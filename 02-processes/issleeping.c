@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+int main() {
+  char *message = "hello world\n";
+  for (int i = 0; i < strlen(message); i++) {
+    printf("%c", message[i]);
+    fflush(stdout);
+    sleep(2);
+  }
+  printf("\n");
+  printf("done\n");
+  return 0;
+}

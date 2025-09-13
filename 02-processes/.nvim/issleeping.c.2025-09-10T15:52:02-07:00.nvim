@@ -1,0 +1,11 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+  while (1) {
+    printf("issleeping\n");
+    /*sleep(10);*/
+    volatine long long delay 1000:q
+  }
+  return 0;
+}

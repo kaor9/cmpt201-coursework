@@ -11,6 +11,8 @@ int main() {
   if (getline(&input, &len, stdin) != -1) {
     char *saveptr;
     char *ret = strtok_r(input, " ", &saveptr);
+
+    // keep printing until strtok_r returns null
     while (ret != NULL) {
       printf("%s\n", ret);
       ret = strtok_r(NULL, " ", &saveptr);

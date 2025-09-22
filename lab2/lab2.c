@@ -6,19 +6,24 @@
 #include <unistd.h>
 
 int main() {
-  char *input = NULL;
-  size_t n = 0;
-
+  // getline stuff
   while (1) {
+    char *input = NULL;
+    size_t n = 0;
+
     printf("Enter programs to run.\n");
     size_t length = getline(&input, &n, stdin);
     if (length != -1) {
       input[length - 1] = '\0'; // remove \n im assuming from hint
       pid_t pid = fork();
 
+      // for child and parents, do:
       if (pid == 0) {
         if (execl(input, input, NULL) == -1) {
           printf("Exec failure.\n");
+          // failures just mean its ok and to keep the program looping
+        } else {
+          free(input); // if successful free input for the next loop
         }
       } else {
         waitpid(pid, NULL, 0);
@@ -29,6 +34,5 @@ int main() {
     }
   }
 
-  free(input);
   return 0;
 }

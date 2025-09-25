@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <sys/wait.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int main() {
+  
+  pid_t pid = fork();
+  int wstatus = 0;
+
+  if (pid == 0) {
+    execl("/bin/ls", "/bin/ls", "-al", NULL);
+  }
+  else {
+    if (waitpid(pid, &wstatus, 0) == -1) {
+      perror("waitpid");
+      exit(EXIT_FAILURE);
+    }
+  }
+
+  printf("%d", wstatus);
+
+  return 0;
+}

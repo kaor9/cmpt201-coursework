@@ -1,0 +1,50 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+void manage_array(char **array, size_t i) {
+  size_t n = 0;
+  size_t length = getline(&array[i], &n, stdin);
+  if (length != -1) {
+    array[i][length - 1] = '\0'; // im just making null in case before
+
+    // if 'print'
+    char *print = "print";
+    if (strcmp(array[i], print) == 0) {
+      for (int i = 0; i < 5; i++) {
+        if (array[i] != NULL)
+          /*printf("%s\n", array[i]);*/
+          printf("123");
+      }
+    }
+  } else {
+    perror("getline() failed");
+    exit(
+        EXIT_FAILURE); // another option could probably be to free and try again
+  }
+}
+
+int main() {
+  int array_size = 0;
+  while (1) {
+    char *lines[5];
+
+    printf("Enter input: ");
+
+    if (array_size < 5) {
+      manage_array(lines, array_size);
+    } else {
+      // if the array is full, instead free index 0, shift left, replace ind 4
+      // with NULL
+      free(lines[0]);
+      for (int i = 0; i < 4; i++) {
+        lines[i] = lines[i + 1];
+      }
+      lines[4] = NULL;
+      manage_array(lines, 4);
+    }
+  }
+  return 0;
+}

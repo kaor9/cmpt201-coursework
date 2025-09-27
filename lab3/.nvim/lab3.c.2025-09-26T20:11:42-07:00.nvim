@@ -21,8 +21,7 @@ void manage_array(char **array, size_t i) {
     }
   } else {
     perror("getline() failed");
-    exit(
-        EXIT_FAILURE); // another option could probably be to free and try again
+    exit(EXIT_FAILURE); // another option could probably be to free and try again
   }
 }
 
@@ -46,6 +45,5 @@ int main() {
       manage_array(lines, 4);
     }
   }
-
   return 0;
 }

@@ -13,10 +13,9 @@ void manage_array(char **array, size_t i) {
     // if 'print'
     char *print = "print";
     if (strcmp(array[i], print) == 0) {
-      for (int j = 0; j < 5; j++) {
-        if (array[j] != NULL) {
-          printf("%s\n", array[j]);
-        }
+      for (int i = 0; i < 5; i++) {
+        if (array[i] != NULL)
+          printf("%s\n", array[i]);
       }
     }
   } else {
@@ -28,16 +27,18 @@ void manage_array(char **array, size_t i) {
 
 int main() {
   int array_size = 0;
-  char *lines[5] = {NULL};
-
   while (1) {
+    char *lines[5] = {NULL};
+
     printf("Enter input: ");
 
     if (array_size < 5) {
       manage_array(lines, array_size);
       array_size++;
+      printf("array size: %d\n", array_size);
     } else {
       // if the array is full, instead free index 0, shift left, replace ind 4
+      // with NULL
       free(lines[0]);
       for (int i = 0; i < 4; i++) {
         lines[i] = lines[i + 1];
@@ -46,6 +47,5 @@ int main() {
       manage_array(lines, 4);
     }
   }
-
   return 0;
 }

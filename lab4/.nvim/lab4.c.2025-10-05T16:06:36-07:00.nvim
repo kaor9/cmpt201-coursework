@@ -31,7 +31,7 @@ void print_out(char *format, void *data, size_t data_size) {
 }
 
 void print_block(char *start) {
-  for (int i = 0; i < 128 - sizeof(struct header); i++) {
+  for (int i = 0; i < 128; i++) {
     char *addr = (start + sizeof(struct header) + i);
     uint64_t val = (uint64_t)*addr;
     print_out("%u\n", &val, sizeof(val));

@@ -22,7 +22,7 @@ int main() {
       ret = strtok_r(NULL, " \n", &saveptr);
     }
     args[argc] = NULL;
-    args[argc - 1] = NULL;
+    args[argc-1] = NULL;
     execvp(args[0], args);
   } else {
     if (waitpid(pid, &wstatus, 0) == -1) {

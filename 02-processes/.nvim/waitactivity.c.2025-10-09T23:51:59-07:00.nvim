@@ -25,7 +25,7 @@ int main() {
     args[argc - 1] = NULL;
     execvp(args[0], args);
   } else {
-    if (waitpid(pid, &wstatus, 0) == -1) {
+    if (waitpid(pid, &wstatus, WNOHANG) == -1) {
       perror("waitpid");
       exit(EXIT_FAILURE);
     }

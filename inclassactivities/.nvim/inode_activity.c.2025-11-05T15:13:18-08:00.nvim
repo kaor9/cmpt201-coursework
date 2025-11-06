@@ -1,0 +1,14 @@
+#include <sys/stat.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+
+  struct stat sb;
+
+  if (argc != 2) {
+    fprintf(stderr, "Usage: %s <pathname>\n", argv[0]);
+    exit(EXIT_FAILURE);
+  }
+
+

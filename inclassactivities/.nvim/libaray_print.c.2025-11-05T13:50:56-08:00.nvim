@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+  char *str = "hello\n";
+  FILE *f = fopen("tmp", "w+");
+  fprintf(f, "%s", str);
+  fflush(f);
+  // fflush flushes a stream as in it forces whatever is in the buffer to be
+  // written. without fflush we might just have content sitting in the buffer
+  // otherwise. There is automatic flushing on some scenarios but use google for that.
+  while (1) {
+    sleep(30);
+  }
+}

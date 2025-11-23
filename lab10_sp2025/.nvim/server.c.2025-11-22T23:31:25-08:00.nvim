@@ -9,17 +9,9 @@ The client is sending over the data found inside the messages array. It sleeps f
 sends one element at a time until it sends all the messages.
 Understanding the Server:
 1. Explain the argument that the `run_acceptor` thread is passed as an argument.
-The argument passed is a struct called 'acceptor_args' which would contain all the typical
-arguments wanted for the calling function. In this case it contains a flag for the running state of
-the thread, list handle pointer, and a mutex lock for locking the thread.
 2. How are received messages stored?
-Received messages are stored in a linked list, where each node of the linked list had the message
-and pointer to next.
 3. What does `main()` do with the received messages?
-Main will wait until there are enough messages collected, then once enough messages are collected it
-will stop the threads and print the messages.
 4. How are threads used in this sample code?
-An acceptor thread will deal with the incoming client connections.
 */
 #include <arpa/inet.h>
 #include <errno.h>
